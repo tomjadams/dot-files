@@ -3,11 +3,6 @@
 
 system_name=`uname -s`
 
-function go () {
-  PROJECT_DIRS="$HOME/Projects"
-  cd `find $PROJECT_DIRS -maxdepth 2 | grep \/$1 | head -n 1`
-}
-
 git_piece='$(__git_ps1 " \[$color_red\]%s\[$color_none\]")'
 date_piece="\[${color_gray}\]\$(date '+%a %H:%M:%S')\[${color_none}\]"
 # umask 022
@@ -41,14 +36,15 @@ else
 fi
 
 export ARCHFLAGS='-arch x86_64'
+#export CC=/usr/local/bin/gcc-4.2
 export MAKEFLAGS='-j4'
 export RUBYLIB="lib:test:$RUBYLIB"
-export GEMS="`gem env gemdir`/gems"
+#export GEMS="`gem env gemdir`/gems"
 export HISTSIZE=1000000
 export FIGNORE="CVS:.swp:.DS_Store:.svn"
-export JAVA_HOME=/Library/Java/Home
+#export JAVA_HOME=/Library/Java/Home
 
-export PATH=/opt/android-sdk-mac_x86/tools:/usr/local/mysql/bin:~/.gem/ruby/1.8/bin:~/Library/Haskell/bin:/opt/maven/bin:/usr/local/bin:/usr/local/sbin:~/bin:${PATH}
+export PATH=/opt/android-sdk-mac_x86/platform-tools:/usr/local/mysql/bin:~/.gem/ruby/1.8/bin:~/Library/Haskell/bin:/opt/maven/bin:/usr/local/bin:/usr/local/sbin:~/bin:/Users/tom/Library/Haskell/ghc-7.4.2/lib/kit-0.7.12/bin:${PATH}
 
 # old prompt
 # export PS1='\[\033[01;32m\]\w $(git branch &>/dev/null; if [ $? -eq 0 ]; then echo "\[\033[01;34m\]$(parse_git_branch)"; fi) \$ \[\033[00m\]'
@@ -109,4 +105,5 @@ bind "set show-all-if-ambiguous On"
 . ~/.aliases/commands
 . ~/.aliases/oomph
 
-[[ -s "/Users/tom/.rvm/scripts/rvm" ]] && source "/Users/tom/.rvm/scripts/rvm"
+eval "$(rbenv init -)"
+

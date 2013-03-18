@@ -13,3 +13,5 @@
 [default]
 	push = tracking
 	pull = tracking
+[push]
+	default = current
