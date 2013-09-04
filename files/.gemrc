@@ -5,7 +5,7 @@
 :bulk_threshold: 1000
 :benchmark: false
 :sources: 
-- http://rubygems.org
+- https://rubygems.org
 - http://gems.github.com
 install: --no-rdoc --no-ri
 update: --no-rdoc --no-ri

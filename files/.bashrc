@@ -35,16 +35,14 @@ else
   export EDITOR='vim'
 fi
 
-export ARCHFLAGS='-arch x86_64'
+#export ARCHFLAGS='-arch x86_64'
 #export CC=/usr/local/bin/gcc-4.2
 export MAKEFLAGS='-j4'
-export RUBYLIB="lib:test:$RUBYLIB"
-#export GEMS="`gem env gemdir`/gems"
 export HISTSIZE=1000000
 export FIGNORE="CVS:.swp:.DS_Store:.svn"
 #export JAVA_HOME=/Library/Java/Home
 
-export PATH=/opt/android-sdk-mac_x86/platform-tools:/usr/local/mysql/bin:~/.gem/ruby/1.8/bin:~/Library/Haskell/bin:/opt/maven/bin:/usr/local/bin:/usr/local/sbin:~/bin:/Users/tom/Library/Haskell/ghc-7.4.2/lib/kit-0.7.12/bin:${PATH}
+export PATH=~/bin:/usr/local/mysql/bin:~/Library/Haskell/bin:/usr/local/bin:/usr/local/sbin:${PATH}
 
 # old prompt
 # export PS1='\[\033[01;32m\]\w $(git branch &>/dev/null; if [ $? -eq 0 ]; then echo "\[\033[01;34m\]$(parse_git_branch)"; fi) \$ \[\033[00m\]'
@@ -105,5 +103,9 @@ bind "set show-all-if-ambiguous On"
 . ~/.aliases/commands
 . ~/.aliases/oomph
 
+
+export PATH=$HOME/.rbenv/bin:$PATH
 eval "$(rbenv init -)"
 
+export ANDROID_SDK_ROOT=/usr/local/opt/android-sdk
+export PATH=/Users/tom/Library/Haskell/ghc-7.4.2/lib/kit-0.7.12/bin:$PATH

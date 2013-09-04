@@ -1,3 +1,4 @@
 #-Dfile.encoding=UTF-8 -Xms128M -Xmx512M -XX:MaxPermSize=256M -XX:NewSize=64M -XX:NewRatio=3
+#SBT_OPTS="-Xmx1024M -XX:+CMSClassUnloadingEnabled -XX:MaxPermSize=256M"
 SBT_OPTS="-XX:+CMSClassUnloadingEnabled -XX:MaxPermSize=256M"
 
