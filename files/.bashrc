@@ -109,3 +109,6 @@ eval "$(rbenv init -)"
 
 export ANDROID_SDK_ROOT=/usr/local/opt/android-sdk
 export PATH=/Users/tom/Library/Haskell/ghc-7.4.2/lib/kit-0.7.12/bin:$PATH
+
+### Added by the Heroku Toolbelt
+export PATH="/usr/local/heroku/bin:$PATH"
