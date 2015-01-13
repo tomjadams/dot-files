@@ -27,10 +27,10 @@ if [ $system_name == 'Linux' ]; then
   [ -f /etc/bash_completion ] && . /etc/bash_completion
   export EDITOR='vim'
 else
-  if [ -f `brew --prefix`/etc/bash_completion ]; then
-    . `brew --prefix`/etc/bash_completion
-  fi
-  # for cf in /usr/local/etc/bash_completion.d/*; do . $cf; done
+  #if [ -f `brew --prefix`/etc/bash_completion ]; then
+  #  . `brew --prefix`/etc/bash_completion
+  #fi
+  for cf in `brew --prefix`/etc/bash_completion.d/*; do . $cf; done
   for cf in ~/.bash_completion.d/*; do . $cf; done  
   export EDITOR='vim'
 fi
@@ -42,7 +42,7 @@ export HISTSIZE=1000000
 export FIGNORE="CVS:.swp:.DS_Store:.svn"
 #export JAVA_HOME=/Library/Java/Home
 
-export PATH=~/bin:/usr/local/mysql/bin:~/Library/Haskell/bin:/usr/local/bin:/usr/local/sbin:${PATH}
+export PATH=~/bin:/usr/local/mysql/bin:~/.cabal/bin:/usr/local/bin:/usr/local/sbin:${PATH}
 
 # old prompt
 # export PS1='\[\033[01;32m\]\w $(git branch &>/dev/null; if [ $? -eq 0 ]; then echo "\[\033[01;34m\]$(parse_git_branch)"; fi) \$ \[\033[00m\]'
@@ -103,12 +103,14 @@ bind "set show-all-if-ambiguous On"
 . ~/.aliases/commands
 . ~/.aliases/oomph
 
-
 export PATH=$HOME/.rbenv/bin:$PATH
 eval "$(rbenv init -)"
 
 export ANDROID_SDK_ROOT=/usr/local/opt/android-sdk
-export PATH=/Users/tom/Library/Haskell/ghc-7.4.2/lib/kit-0.7.12/bin:$PATH
 
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
+
+# Docker
+$(boot2docker shellinit > /dev/null 2> /dev/null)
+

@@ -1,0 +1,10 @@
+.DS_Store
+0.12.3/
+0.13/plugins/project/
+0.13/plugins/target/
+0.13/staging/
+boot/
+launch/
+launchers/
+plugins/
+staging/

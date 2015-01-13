@@ -3,6 +3,7 @@
   st = status
   co = checkout
   log = log --oneline --decorate
+  pr = pull-request
 [user]
 	name = Tom Adams
 	email = tomjadams@gmail.com

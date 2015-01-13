@@ -44,7 +44,7 @@ function ku() {
 
 # Find a project in various directories. Change them to whatever suits you
 function fp() {
- echo `find $HOME/Projects/Oomph $HOME/Projects/Pelofy $HOME/Projects/Oomph/oomph-build $HOME/Projects/Personal $HOME/Projects/open_source $HOME/Projects/NewsDigital -maxdepth 1 | grep /\[\^/\]\*$1\
+ echo `find $HOME/Projects/Cogent $HOME/Projects/Oomph $HOME/Projects/Pelofy $HOME/Projects/Personal $HOME/Projects/open_source -maxdepth 1 | grep /\[\^/\]\*$1\
 \[\^/\]\*$ | head -n 1`
 }
 
@@ -60,49 +60,48 @@ function go () {
  fi
 }
 
+function ku() {
+  pushd ~/.kit && rm -Rf packages && git pull && popd
+}
+
 # Update a particular project
 function gu() {
- if [ -n "$1" ]
- then
-   local PROJECT=`fp $1`
- else
-   local PROJECT=`pwd`
- fi
+  if [ -n "$1" ]; then
+    local PROJECT=`fp $1`
+  else
+    local PROJECT=`pwd`
+  fi
 
- if [ -n "$PROJECT" ]
- then
-   cd "$PROJECT"
- fi
-
- git pull
- kit update
+  if [ -d "$PROJECT" ]; then
+    pushd "$PROJECT"
+    git fetch origin && git rebase -p
+    kit
+    popd
+  fi
 }
 
 # Update everything
 function goku() {
- if [ -n "$1" ]
- then
-   local PROJECT=`fp $1`
- else
-   goku $(basename $(pwd))
-   return
- fi
+  if [ -n "$1" ]; then
+    local PROJECT=`fp $1`
+  else
+    local PROJECT=`pwd`
+  fi
 
- echo "\nUpdating Kits..."
- ku
+  echo "\nUpdating Kits..."
+  ku
 
- if [ -n "$PROJECT" ]
- then
-   if [ -n `ls "$PROJECT" | grep dev-packages` ]
-   then
-     for package in `ls "$PROJECT"/dev-packages`
-     do
-       echo "\nUpdating $package..."
-       gu "$package"
-     done
-   fi
- fi
+  if [ -d "$PROJECT" ]; then
+    if [ -d "$PROJECT/dev-packages" ]; then
+      for package in `ls -r $PROJECT/dev-packages`; do
+        echo "\nUpdating $package"
+        gu "$package"
+      done
+    fi
+  fi
 
- echo "\nUpdating $PROJECT..."
- gu `basename "$PROJECT"`
+  echo "\nUpdating `basename $PROJECT`"
+  gu `basename $PROJECT`
+  go `basename $PROJECT`
 }
+
