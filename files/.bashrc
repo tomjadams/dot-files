@@ -103,8 +103,10 @@ bind "set show-all-if-ambiguous On"
 . ~/.aliases/commands
 . ~/.aliases/oomph
 
-export PATH=$HOME/.rbenv/bin:$PATH
-eval "$(rbenv init -)"
+if [ -d ${HOME}/.rbenv ]; then
+  export PATH=$HOME/.rbenv/bin:$PATH
+  eval "$(rbenv init -)"
+fi
 
 export ANDROID_SDK_ROOT=/usr/local/opt/android-sdk
 
