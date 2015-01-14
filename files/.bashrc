@@ -6,34 +6,10 @@
 
 system_name=`uname -s`
 
-
-if [ -f "$(brew --prefix bash-git-prompt)/share/gitprompt.sh" ]; then
-  GIT_PROMPT_THEME=Default
-  source "$(brew --prefix bash-git-prompt)/share/gitprompt.sh"
-  #git_piece='$(__git_ps1 " \[$color_red\]%s\[$color_none\]")'
-  #date_piece="\[${color_gray}\]\$(date '+%a %H:%M:%S')\[${color_none}\]"
-  # old prompt
-  # export PS1='\[\033[01;32m\]\w $(git branch &>/dev/null; if [ $? -eq 0 ]; then echo "\[\033[01;34m\]$(parse_git_branch)"; fi) \$ \[\033[00m\]'
-  # export PS1="${date_piece} \u\[${color_ps1}\]@\[${color_none}\]\h \[${color_gray}\]\w\[${git_piece}\]\n\[${color_ps1}\]\$\[${color_none}\] "
+# Requires https://github.com/magicmonty/bash-git-prompt
+if [ -f "$(brew --prefix)/opt/bash-git-prompt/share/gitprompt.sh" ]; then
+  source "$(brew --prefix)/opt/bash-git-prompt/share/gitprompt.sh"
 fi
-
-# umask 022
-
-#alias git-set-remote='echo git config branch.`git-branch-name`.remote "$1" && echo git config branch.`git-branch-name`.merge "refs/heads/$2"'
-# Combining Lachie Cox's crazy Git branch mojo:
-#   http://spiral.smartbomb.com.au/post/31418465
-# with 
-#   http://henrik.nyh.se/2008/12/git-dirty-prompt
-# AND Geoff Grosenbach's style:
-#   http://pastie.org/325104
-# Sweeeeeeeet!
-function parse_git_dirty {
-  [[ $(git status 2> /dev/null | tail -n1) != "nothing to commit (working directory clean)" ]] && echo "(☠)"
-}
-
-function parse_git_branch {
-  git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/\1$(parse_git_dirty)/"
-}
 
 if [ $system_name == 'Linux' ]; then
   [ -f /etc/bash_completion ] && . /etc/bash_completion
