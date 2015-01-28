@@ -8,7 +8,11 @@ system_name=`uname -s`
 
 # Requires https://github.com/magicmonty/bash-git-prompt
 if [ -f "$(brew --prefix)/opt/bash-git-prompt/share/gitprompt.sh" ]; then
-  source "$(brew --prefix)/opt/bash-git-prompt/share/gitprompt.sh"
+  GIT_PROMPT_ONLY_IN_REPO=1
+  GIT_PROMPT_FETCH_REMOTE_STATUS=0
+  #GIT_PROMPT_THEME=Solarized
+  #source "$(brew --prefix)/opt/bash-git-prompt/share/gitprompt.sh"
+  #ls "$(brew --prefix)/opt/bash-git-prompt/share/gitprompt.sh"
 fi
 
 if [ $system_name == 'Linux' ]; then
@@ -37,7 +41,6 @@ export PATH=~/bin:/usr/local/mysql/bin:~/.cabal/bin:/usr/local/bin:/usr/local/sb
 
 # coloured ls
 if [ "$TERM" != "dumb" ]; then
-
   if [ $system_name == 'Linux' ]; then
     color_option='--color=auto'
     alias du='du -k --max-depth=1'
@@ -52,9 +55,16 @@ if [ "$TERM" != "dumb" ]; then
   alias ll="ls -lh $color_option"
   alias la="ls -a $color_option"
   alias lal="ls -lha $color_option"
+fi
 
+if [ -f ~/.scripts/j.sh ]; then
   . ~/.scripts/j.sh
+fi
+if [ -f ~/.scripts/goku.sh ]; then
   . ~/.scripts/goku.sh
+fi
+if [ -f ~/.scripts/github-creds.sh ]; then
+  . ~/.scripts/github-creds.sh
 fi
 
 # sets the title window

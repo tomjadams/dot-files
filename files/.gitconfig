@@ -1,9 +1,10 @@
 [alias]
   ci = commit
-  st = status
+  st = status -sb
   co = checkout
   log = log --oneline --decorate
   pr = pull-request
+  up = pull
 [user]
 	name = Tom Adams
 	email = tomjadams@gmail.com
@@ -15,6 +16,16 @@
 	push = tracking
 	pull = tracking
 [push]
-	default = current
+	default = simple
+	#default = current
 [core]
 	autocrlf = input
+
+[hub]
+protocol = https
+
+[pull]
+rebase = preserve
+
+#[credential]
+#helper = /opt/boxen/bin/boxen-git-credential
