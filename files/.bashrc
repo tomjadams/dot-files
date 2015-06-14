@@ -107,6 +107,17 @@ export ANDROID_SDK_ROOT=/usr/local/opt/android-sdk
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
 
+# Add GHC 7.8.4 to the PATH, via http://ghcformacosx.github.io/
+export GHC_DOT_APP="/Applications/GHC.app"
+if [ -d "$GHC_DOT_APP" ]; then
+    export PATH="${HOME}/.cabal/bin:${GHC_DOT_APP}/Contents/bin:${PATH}"
+fi
+
 # Docker
 $(boot2docker shellinit > /dev/null 2> /dev/null)
 
+# The next line updates PATH for the Google Cloud SDK.
+source '/opt/google-cloud-sdk/google-cloud-sdk/path.bash.inc'
+
+# The next line enables bash completion for gcloud.
+source '/opt/google-cloud-sdk/google-cloud-sdk/completion.bash.inc'

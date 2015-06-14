@@ -20,6 +20,7 @@
 	#default = current
 [core]
 	autocrlf = input
+ excludesfile = /opt/boxen/config/git/gitignore
 
 [hub]
 protocol = https
